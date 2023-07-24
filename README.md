@@ -1,4 +1,4 @@
-## Model_Evaluation is a collection of analysis notebooks whose purpose is to visualize data, compare DIC, TA and TA-DIC across models and observations. and to calculate bias, RMSE, and WSS.
+### Model_Evaluation is a collection of analysis notebooks whose purpose is to visualize data, compare DIC, TA and TA-DIC across models and observations. and to calculate bias, RMSE, and WSS.
 
 Author: Mai Hong
 
