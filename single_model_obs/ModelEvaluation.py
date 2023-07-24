@@ -77,7 +77,7 @@ for i, reg in enumerate(regs):
 
 
 
-def ModelEvaluation (modlist, yrst=1990, yrend=2020):
+def ModelEvaluation (modlist, yrst=1991, yrend=2021):
     
     directory_path = os.path.join(pwd, modlist)
 
@@ -95,7 +95,7 @@ def ModelEvaluation (modlist, yrst=1990, yrend=2020):
 
     # loading data
     # GLODAP
-    df = pd.read_csv('/gpfs/home/mep22dku/scratch/SOZONE/evalOutput/datasets/GLODAPv2.2022_GLOBAL_valid_DICTA_umolL_STITCHED.csv')
+    df = pd.read_csv('/gpfs/home/mep22dku/scratch/SOZONE/MaiInternship/GLODAPv2.2022_GLOBE_valid_DICTA_umolL_surface_XY.csv')
     df = df[(df.YR >= yrst) & (df.YR <= yrend)]
     df = df[df.PRES <= 10]  #surface
 
@@ -103,11 +103,10 @@ def ModelEvaluation (modlist, yrst=1990, yrend=2020):
     tALK = np.array(df['ALK'][:])
     tYEAR = np.array(df['YR'])
     tMONTH = np.array(df['MONTH'])
-    tY = np.array(df['Y'])
-    tX = np.array(df['X'])
+    tY = np.array(df['tY'])
+    tX = np.array(df['tX'])
 
     tREG_new = np.array(tX)
-
     for j in range(len(tY)):
         y = tY[j].astype(int)
         x = tX[j].astype(int)
@@ -415,8 +414,8 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser(description='Calculating and plotting data using command line arguments')
     parser.add_argument('modlist', type=str, help='one model name')
-    parser.add_argument('--yrst',  type=int, default=1990, help='Model data start year, default 1990')
-    parser.add_argument('--yrend', type=int, default=2020, help='Model data end year, default 2020')
+    parser.add_argument('--yrst',  type=int, default=1991, help='Model data start year, default 1991')
+    parser.add_argument('--yrend', type=int, default=2021, help='Model data end year, default 2021')
     
     args = parser.parse_args()
     
