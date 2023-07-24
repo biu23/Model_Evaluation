@@ -167,9 +167,11 @@ def ModelEvaluation (modlist, yrst=1991, yrend=2021):
     # merge, match model data and obs data
     tdat_merge_modDIC = pd.merge(tdat_MOD_DIC, tdat_OBS, on=['YEAR', 'MONTH', 'y', 'x'])
     tdat_merge_modDIC = tdat_merge_modDIC.loc[:, ['DIC','obs_DIC', 'REG','REG_Group']]
+    tdat_merge_modDIC['DIC'] = tdat_merge_modDIC['DIC']*1e6
 
     tdat_merge_modTA = pd.merge(tdat_MOD_TA, tdat_OBS, on=['YEAR', 'MONTH', 'y', 'x'])
     tdat_merge_modTA = tdat_merge_modTA.loc[:, ['Alkalini','obs_TA','REG','REG_Group']]
+    tdat_merge_modTA['Alkalini'] = tdat_merge_modTA['Alkalini']*1e6
 
     # calculate region mean
     tdat_merge_modDIC_mean = tdat_merge_modDIC.groupby(by=["REG_Group"]).mean()
@@ -188,7 +190,7 @@ def ModelEvaluation (modlist, yrst=1991, yrend=2021):
                 marker = 'o', s=s,label = 'GLODAP',color='k', zorder=4)
 
     # match model data
-    plt.scatter(tdat_merge_modDIC_mean['DIC']* 1e6,tdat_merge_modDIC_mean['REG'],
+    plt.scatter(tdat_merge_modDIC_mean['DIC'],tdat_merge_modDIC_mean['REG'],
                 marker = '+', s=s,label = f'{modlist} match DIC',color='r', zorder=5)
 
     #background region line
@@ -233,7 +235,7 @@ def ModelEvaluation (modlist, yrst=1991, yrend=2021):
                 marker = 'o', s=s,label = 'GLODAP',color='k', zorder=4)
 
     # match
-    plt.scatter(tdat_merge_modTA_mean['Alkalini']* 1e6,tdat_merge_modTA_mean['REG'] ,
+    plt.scatter(tdat_merge_modTA_mean['Alkalini'],tdat_merge_modTA_mean['REG'] ,
                 marker = '+', s=s,label = f'{modlist} match TA',color='r', zorder=5)
 
     #background region line
@@ -275,7 +277,7 @@ def ModelEvaluation (modlist, yrst=1991, yrend=2021):
 
 
     # match
-    plt.scatter((tdat_merge_modTA_mean['Alkalini']-tdat_merge_modDIC_mean['DIC'])* 1e6,
+    plt.scatter((tdat_merge_modTA_mean['Alkalini']-tdat_merge_modDIC_mean['DIC']),
                 tdat_merge_modTA_mean['REG'] ,marker = '+', s=s,label = f'{modlist} match TA-DIC',color='r', zorder=5)
 
     #background region line
