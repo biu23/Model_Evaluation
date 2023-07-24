@@ -348,9 +348,9 @@ def ModelEvaluation (modlist, yrst=1991, yrend=2021):
     WSS_TADIC = WSS_box(all_TADIC_nonan['obs_TA-DIC'].values, all_TADIC_nonan['mod_TA-DIC'].values)
 
     result_global = [
-        {'evaluation_metrics':'bias' ,'DIC': bias_DIC, 'TA': bias_TA, 'TA-DIC': bias_TADIC}, 
-        {'evaluation_metrics':'RMSE_DIC' ,'DIC': RMSE_DIC, 'TA': RMSE_TA, 'TA-DIC': RMSE_TADIC},
-        {'evaluation_metrics':'WSS' ,'DIC': WSS_DIC,  'TA': WSS_TA,  'TA-DIC': WSS_TADIC}
+        {'evaluation_metrics':'bias' ,'emDIC': bias_DIC, 'emTA': bias_TA, 'emTA-DIC': bias_TADIC}, 
+        {'evaluation_metrics':'RMSE' ,'emDIC': RMSE_DIC, 'emTA': RMSE_TA, 'emTA-DIC': RMSE_TADIC},
+        {'evaluation_metrics':'WSS' ,'emDIC': WSS_DIC,  'emTA': WSS_TA,  'emTA-DIC': WSS_TADIC}
     ]
     result_global = pd.DataFrame(result_global)
     
