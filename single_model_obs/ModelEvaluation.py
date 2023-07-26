@@ -77,7 +77,7 @@ for i, reg in enumerate(regs):
 
 
 
-def ModelEvaluation (modlist, yrst=1991, yrend=2021):
+def ModelEvaluation (modlist, yrst=1991, yrend=2020):
     
     directory_path = os.path.join(pwd, modlist)
 
@@ -423,7 +423,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Calculating and plotting data using command line arguments')
     parser.add_argument('modlist', type=str, help='one model name')
     parser.add_argument('--yrst',  type=int, default=1991, help='Model data start year, default 1991')
-    parser.add_argument('--yrend', type=int, default=2021, help='Model data end year, default 2021')
+    parser.add_argument('--yrend', type=int, default=2020, help='Model data end year, default 2020')
     
     args = parser.parse_args()
     
