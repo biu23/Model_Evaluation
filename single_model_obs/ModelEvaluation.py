@@ -77,7 +77,7 @@ for i, reg in enumerate(regs):
 
 
 
-def ModelEvaluation (modlist, yrst=1991, yrend=2020):
+def ModelEvaluation (modlist, yrst=1991, yrend=2021):
     
     directory_path = os.path.join(pwd, modlist)
 
@@ -353,12 +353,18 @@ def ModelEvaluation (modlist, yrst=1991, yrend=2020):
         {'evaluation_metrics':'WSS' ,'emDIC': WSS_DIC,  'emTA': WSS_TA,  'emTA-DIC': WSS_TADIC}
     ]
     result_global = pd.DataFrame(result_global)
-    
-    data_global = pd.concat([all_TA_nonan, all_DIC_nonan], axis=1)
-    data_global = data_global.iloc[:, :-2]
-    data_global = data_global.loc[:, ['REG','Alkalini','obs_TA','DIC','obs_DIC']]
 
-    savedata0_global = pd.concat([data_global, result_global], axis=1)
+    #save global data
+    sdat_merge = pd.merge(tdat_MOD_DIC, tdat_OBS, on=['YEAR', 'MONTH', 'y', 'x'])
+    sdat_merge = sdat_merge.dropna()
+    sdat_merge =  pd.merge(tdat_MOD_TA, sdat_merge, on=['YEAR', 'MONTH', 'y', 'x'])
+    sdat_merge = sdat_merge.dropna()
+    sdat_merge['DIC'] = sdat_merge['DIC']*1e6
+    sdat_merge['Alkalini'] = sdat_merge['Alkalini']*1e6
+
+    sdat_merge = sdat_merge.loc[:, ['REG','YEAR','MONTH','y','x','Alkalini','obs_TA','DIC','obs_DIC','time_counter_x']]
+
+    savedata0_global = pd.concat([sdat_merge, result_global], axis=1)
     csv_file_path = os.path.join(directory_path, f'{yrst}-{yrend}_{modlist}_bias_RMSE_WSS_mean_umolL_global.csv')
     savedata0_global.to_csv(csv_file_path, index=False)
 
@@ -417,7 +423,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Calculating and plotting data using command line arguments')
     parser.add_argument('modlist', type=str, help='one model name')
     parser.add_argument('--yrst',  type=int, default=1991, help='Model data start year, default 1991')
-    parser.add_argument('--yrend', type=int, default=2020, help='Model data end year, default 2021')
+    parser.add_argument('--yrend', type=int, default=2021, help='Model data end year, default 2021')
     
     args = parser.parse_args()
     
