@@ -17,3 +17,11 @@ List of subfolders:
 - Observed and modeled values for subregion-weighted DIC and TA after matching, and sub-regional bias, RMSE, and WSS.
 - The default start year: 1990 & the end year: 2020.
 
+#### evaluation_metrics
+- Multiple-model Bias, RMSE, WSS sub-area comparison plots
+
+#### other
+- GLODAP (Data distribu+on, global, depth)
+- Salinity plots (DIC-SAL, TA-SAL, (TA-DIC)-SAL)
+- Model region plots (DIC vs. TA-DIC)
+- Time series (Trends in modelled and observed values between 1990 and 2020, subregional)
