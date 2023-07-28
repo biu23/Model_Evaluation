@@ -18,8 +18,12 @@ List of subfolders:
 - The default start year: 1990 & the end year: 2020.
 
 #### evaluation_metrics
-- Multiple-model Bias, RMSE, WSS sub-area comparison plots
-
+1. Global
+   - Reading global evaluation metrics data and plotting multi-model comparisons
+3. Region
+   - Multiple-model Bias, RMSE, WSS sub-area comparison plots
+   - Comparison of 7 model evaluation metrics for the subregion(I5,P5,A5) and globally
+  
 #### other
 - GLODAP (Data distribu+on, global, depth)
 - Salinity plots (DIC-SAL, TA-SAL, (TA-DIC)-SAL)
